@@ -37,12 +37,12 @@ const Icon = props => {
       return <MotorcycleIcon />;
     case "Boat":
       return (
-        <FontAwesomeIcon icon="faShip" size="sm" style={{ color: "#fff" }} />
+        <FontAwesomeIcon icon="ship" size="sm" style={{ color: "#fff" }} />
       );
     case "BusTransport":
       return (
         <FontAwesomeIcon
-          icon="faBus"
+          icon="bus"
           size="sm"
           style={{ color: "rgba(0, 0, 0, 0.4)" }}
         />
@@ -50,7 +50,7 @@ const Icon = props => {
     case "BoatTransport":
       return (
         <FontAwesomeIcon
-          icon="faShip"
+          icon="ship"
           size="sm"
           style={{ color: "rgba(0, 0, 0, 0.4)" }}
         />
@@ -63,12 +63,12 @@ const Icon = props => {
       return <MusicNoteIcon />;
     case "Friendly":
       return (
-        <FontAwesomeIcon icon="faSmile" size="sm" style={{ color: "#fff" }} />
+        <FontAwesomeIcon icon="smile" size="sm" style={{ color: "#fff" }} />
       );
     case "LocalPeople":
       return (
         <FontAwesomeIcon
-          icon="faComments"
+          icon="comments"
           size="sm"
           style={{ color: "#fff" }}
         />
@@ -76,18 +76,18 @@ const Icon = props => {
     case "MeetUp":
       return (
         <FontAwesomeIcon
-          icon="faMapMarkerAlt"
+          icon="map-marker-alt"
           size="sm"
           style={{ color: "#fff" }}
         />
       );
     case "Sun":
       return (
-        <FontAwesomeIcon icon="faSun" size="sm" style={{ color: "#fff" }} />
+        <FontAwesomeIcon icon="sun" size="sm" style={{ color: "#fff" }} />
       );
     case "Film":
       return (
-        <FontAwesomeIcon icon="faFilm" size="sm" style={{ color: "#fff" }} />
+        <FontAwesomeIcon icon="film" size="sm" style={{ color: "#fff" }} />
       );
     case "FilterList":
       return <FilterList />;

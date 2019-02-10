@@ -192,7 +192,7 @@ class TourCardMediaContent extends Component {
         <Dialog
           fullScreen={fullScreen}
           open={this.state.open}
-          transition={Transition}
+          TransitionComponent={Transition}
           keepMounted
           aria-labelledby="responsive-dialog-title"
           className={[classes.dialog, classes.hiddenScrollX].join(' ')}

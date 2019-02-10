@@ -4,7 +4,7 @@ import update from "react-addons-update";
 import "whatwg-fetch";
 
 // Style
-import { withStyles } from "@material-ui/core/styles";
+import { withStyles, withTheme } from "@material-ui/core/styles";
 import breakpoints from "../theme/breakpoints";
 import Slide from "@material-ui/core/Slide";
 import Typography from "@material-ui/core/Typography";
@@ -203,7 +203,6 @@ class TourBook extends Component {
       note,
       tour: tour.name
     };
-    console.log(payload);
     fetch(url, {
       method: "POST",
       headers: {
@@ -234,7 +233,7 @@ class TourBook extends Component {
       <Dialog
         fullScreen={fullScreen}
         open={booking}
-        transition={Transition}
+        TransitionComponent={Transition}
         keepMounted
         aria-labelledby="responsive-dialog-title"
         className={[classes.dialog, classes.hiddenScrollX].join(" ")}
@@ -270,7 +269,7 @@ class TourBook extends Component {
         </DialogContent>
         {activeStep !== 3 ? (
           <DialogActions>
-            <Button dense onClick={this.handleBack}>
+            <Button onClick={this.handleBack}>
               {theme.direction === "rtl" ? (
                 <KeyboardArrowRight />
               ) : (
@@ -281,7 +280,6 @@ class TourBook extends Component {
             {activeStep === 2 ? (
               <div className={classes.wrapper}>
                 <Button
-                  dense
                   onClick={this.handleBooking}
                   disabled={disabledNext || loading}
                 >
@@ -300,7 +298,7 @@ class TourBook extends Component {
                 )}
               </div>
             ) : (
-              <Button dense onClick={this.handleNext} disabled={disabledNext}>
+              <Button onClick={this.handleNext} disabled={disabledNext}>
                 Next
                 {theme.direction === "rtl" ? (
                   <KeyboardArrowLeft />
@@ -392,4 +390,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   null,
   mapDispatchToProps
-)(withStyles(styles, { withTheme: true })(withMobileDialog()(TourBook)));
+)(withMobileDialog()(withTheme()(withStyles(styles)(TourBook))));
