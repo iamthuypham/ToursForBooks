@@ -73,7 +73,8 @@ const exampleTours = [
     reviews: [
       "I have a great time with Tours For Books. They are really nice and professional."
     ],
-    type: "local"
+    type: "local",
+    category:"commerical"
   },
   {
     activities: [
@@ -174,7 +175,8 @@ const exampleTours = [
       amount: 115,
       discountAmount: 90
     },
-    type: "local"
+    type: "local",
+    category:"commerical"
   },
   {
     activities: [
@@ -284,7 +286,8 @@ const exampleTours = [
       amount: 50,
       discountAmount: 42
     },
-    type: "local"
+    type: "local",
+    category:"commerical"
   },
   {
     activities: [
@@ -359,7 +362,8 @@ const exampleTours = [
       amount: 80,
       discountAmount: 69
     },
-    type: "local"
+    type: "local",
+    category:"valunteer"
   },
   {
     activities: [
@@ -446,7 +450,8 @@ const exampleTours = [
       amount: 52,
       discountAmount: 45
     },
-    type: "local"
+    type: "local",
+    category:"valunteer"
   },
   {
     activities: [
@@ -530,7 +535,8 @@ const exampleTours = [
       amount: 100,
       discountAmount: 79
     },
-    type: "local"
+    type: "local",
+    category:"ecotour"
   },
   {
     activities: [
@@ -624,7 +630,8 @@ const exampleTours = [
       amount: 90,
       discountAmount: 85
     },
-    type: "local"
+    type: "local",
+    category:"ecotour"
   },
   {
     activities: [
