@@ -1,24 +1,23 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
 // Style
-import widthWidth from '../utils/withWidth';
-import breakpoints from '../theme/breakpoints';
-import { withStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
+import widthWidth from '../utils/withWidth'
+import breakpoints from '../theme/breakpoints'
+import { withStyles } from '@material-ui/core/styles'
+import Grid from '@material-ui/core/Grid'
 // Store
-import { fetchInitialTours } from './action';
+import { fetchInitialTours } from './action'
 
 // Component
 import TourCard from './TourCard';
 import TourCategory from './TourCategory';
 var smoothScroll = require('smoothscroll');
 
-
 class Tours extends Component {
   constructor(props) {
-    super(props);
-    this.state={
+    super(props)
+    this.state = {
       open: false,
       localTourOpen: false,
       customTourOpen: false,
@@ -31,23 +30,23 @@ class Tours extends Component {
     this.handleApply = this.handleApply.bind(this)
     this.handleCategory = this.handleCategory.bind(this)
   }
-  
-  handleClick(){
-    this.setState({open: true})
+
+  handleClick() {
+    this.setState({ open: true })
   }
-  handleClose(){
-    this.setState({open: false})
+  handleClose() {
+    this.setState({ open: false })
   }
-  handleChange(tourType,checked){
-    this.setState({ [tourType] : checked})
+  handleChange(tourType, checked) {
+    this.setState({ [tourType]: checked })
   }
-  handleReset(){
-    this.setState({localTourOpen: false, customTourOpen: false})
+  handleReset() {
+    this.setState({ localTourOpen: false, customTourOpen: false })
   }
-  
+
   handleApply() {
     this.handleClose()
-    let tourSection = document.querySelector('#tours') 
+    let tourSection = document.querySelector('#tours')
     smoothScroll(tourSection)
   }
   handleCategory(category){
@@ -89,27 +88,27 @@ const styles = theme => ({
     'padding-top':'1%',
     flexGrow: 1,
   },
-  [`@media (min-width: ${breakpoints['md']}px)`]:{
+  [`@media (min-width: ${breakpoints['md']}px)`]: {
     tourWrapper: {
       display: 'flex',
       padding: '5% 10%',
       'padding-top':'1%',
       flexDirection: 'row',
-      justifyContent: 'stretch',
+      justifyContent: 'stretch'
     }
-  },
-});
+  }
+})
 
 const mapStateToProps = (state, ownProps) => {
   const { tours } = state.ToursReducer.InitialToursReducer
   return { tours }
 }
 
-const mapDispatchToProps = (dispatch) => ({
-    dispatchFetchInitialTours: () => dispatch(fetchInitialTours())
+const mapDispatchToProps = dispatch => ({
+  dispatchFetchInitialTours: () => dispatch(fetchInitialTours())
 })
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(widthWidth(withStyles(styles)(Tours)));
+)(widthWidth(withStyles(styles)(Tours)))
