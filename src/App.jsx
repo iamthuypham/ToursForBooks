@@ -55,8 +55,7 @@ class App extends Component {
           path="/tour/:tour_id"
           render={props => <TourPage routing={props} />}
         />
-        <Route exact path="/signin" component={SignInPage} />
-        <Route exact path="/admin" component={AdminPage} />
+        <Route exact path="/admin" render={props => <AdminPage {...props} />} />
         <div
           className="fb-customerchat"
           data-page_id="1726420851006429"

@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import SERVER_URI from '../config'
 import firebase from 'firebase'
+import Button from '@material-ui/core/Button'
+import SignInPage from './SignInPage'
 
 const api = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -14,18 +16,18 @@ firebase.initializeApp(api)
 
 class AdminPage extends Component {
   state = {
-    auth: null,
-    isSavedAndAddAnother: false,
-    uiConfig: {
-      // Popup signin flow rather than redirect flow.
-      signInFlow: 'popup',
-      // Redirect to /signedIn after sign in is successful. Alternatively you can provide a callbacks.signInSuccess function.
-      signInSuccessUrl: '/admin',
-      // We will display Google and Facebook as auth providers.
-      signInOptions: [firebase.auth.GoogleAuthProvider.PROVIDER_ID]
-    }
+    isAuthenticated: !!firebase.auth().currentUser,
+    isSavedAndAddAnother: false
+  }
+  handleSignOut = () => {
+    firebase.auth().signOut()
+    window.localStorage.clear()
+    this.setState({ isAuthenticated: false })
   }
   addTour = () => {
+    if (!this.state.isAuthenticated) {
+      return
+    }
     firebase
       .auth()
       .currentUser.getIdToken()
@@ -44,12 +46,29 @@ class AdminPage extends Component {
       })
       .catch(error => console.log('Cannot get token', error))
   }
+
+  handleSignInSuccess = () => {
+    this.setState({ isAuthenticated: true })
+  }
+
   render() {
-    const { isSavedAndAddAnother } = this.state
+    const { isSavedAndAddAnother, isAuthenticated } = this.state
+    console.log(this.props)
     return (
       <div>
-        {isSavedAndAddAnother && <h6>New Tour is created!</h6>}
-        <button onClick={this.addTour}>Add Tour</button>
+        {!isAuthenticated ? (
+          <SignInPage signInSuccess={this.handleSignInSuccess} />
+        ) : (
+          <>
+            {isSavedAndAddAnother && <h6>New Tour is created!</h6>}
+            <Button onClick={this.addTour} disabled={!isAuthenticated}>
+              Add Tour
+            </Button>
+            <Button onClick={this.handleSignOut} disabled={!isAuthenticated}>
+              Sign Out
+            </Button>
+          </>
+        )}
       </div>
     )
   }
