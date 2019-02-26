@@ -3,6 +3,14 @@ import SERVER_URI from '../config'
 import firebase from 'firebase'
 import Button from '@material-ui/core/Button'
 import SignInPage from './SignInPage'
+import { withStyles } from '@material-ui/core/styles'
+import AppBar from '@material-ui/core/AppBar'
+import Toolbar from '@material-ui/core/Toolbar'
+import Typography from '@material-ui/core/Typography'
+import IconButton from '@material-ui/core/IconButton'
+import MenuIcon from '@material-ui/icons/Menu'
+
+import TourCreationForm from '../admin/TourCreationForm'
 
 const api = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -53,25 +61,64 @@ class AdminPage extends Component {
 
   render() {
     const { isSavedAndAddAnother, isAuthenticated } = this.state
-    console.log(this.props)
+    const { classes } = this.props
     return (
-      <div>
-        {!isAuthenticated ? (
+      <div className={classes.adminPage}>
+        {/* {!isAuthenticated ? (
           <SignInPage signInSuccess={this.handleSignInSuccess} />
         ) : (
-          <>
-            {isSavedAndAddAnother && <h6>New Tour is created!</h6>}
-            <Button onClick={this.addTour} disabled={!isAuthenticated}>
-              Add Tour
-            </Button>
+          <> */}
+        {isSavedAndAddAnother && <h6>New Tour is created!</h6>}
+        <AppBar position="static">
+          <Toolbar>
+            <IconButton
+              className={classes.menuButton}
+              color="inherit"
+              aria-label="Menu"
+            >
+              <MenuIcon />
+            </IconButton>
+            <Typography
+              variant="body1"
+              color="inherit"
+              className={classes.grow}
+            >
+              Admin Workspace
+            </Typography>
             <Button onClick={this.handleSignOut} disabled={!isAuthenticated}>
               Sign Out
             </Button>
-          </>
-        )}
+          </Toolbar>
+        </AppBar>
+        <div className={classes.content}>
+          <TourCreationForm
+            isAnthenticated={isAuthenticated}
+            addTour={this.addTour}
+          />
+        </div>
+        {/* </>
+        )} */}
       </div>
     )
   }
 }
 
-export default AdminPage
+const styles = {
+  adminPage: {
+    flexGrow: 1
+  },
+  content: {
+    flexGrow: 1,
+    paddingRight: '15%',
+    paddingLeft: '15%'
+  },
+  grow: {
+    flexGrow: 1
+  },
+  menuButton: {
+    marginLeft: -12,
+    marginRight: 20
+  }
+}
+
+export default withStyles(styles)(AdminPage)
